@@ -1,28 +1,21 @@
 import { test, expect } from '@playwright/test';
+import { testConfig } from '../../config/testConfig';
+
 
 test('LOGIN-001 정상 로그인', async ({ page }) => {
-  //1. 환경변수에서 시험 계정 가져오기
-  const id = process.env.TEST_ID;
-  const password = process.env.TEST_PASSWORD;
-  const url = process.env.TEST_URL;
-
-  //환경변수가 없는 경우 오류 발생
-  if(!id || !password || !url){
-    throw new Error('시험 환경변수가 설정되지 않았습니다.');
-  }
 
   //2. 웹페이지 접속 
-  await page.goto(url);
+  await page.goto(testConfig.url);
   
   //3. 로그인 화면 이동
   await page.getByRole('link', { name: '로그인' }).click();
   
   //4. id, pw 입력
   await page.getByRole('textbox', { name: '아이디' }).click();
-  await page.getByRole('textbox', { name: '아이디' }).fill(id);
+  await page.getByRole('textbox', { name: '아이디' }).fill(testConfig.id);
 
   await page.getByRole('textbox', { name: '비밀번호' }).click();
-  await page.getByRole('textbox', { name: '비밀번호' }).fill(password);
+  await page.getByRole('textbox', { name: '비밀번호' }).fill(testConfig.password);
 
   //5. 로그인
   await page.getByRole('button', { name: '로그인' }).click();
