@@ -10,7 +10,6 @@ export class LoginPage {
 
     constructor(page: Page){
         this.page = page;
-
         this.idInput = page.getByRole('textbox', {name:'아이디'});
         this.passwordInput = page.getByRole('textbox', {name:'비밀번호'});
         this.loginButton = page.getByRole('button', {name:'로그인'});
@@ -20,7 +19,7 @@ export class LoginPage {
     async goto(){
         await this.page.goto(
             new URL('/login', testConfig.url).toString()
-        );
+        )
     }
 
     //로그인 수행
