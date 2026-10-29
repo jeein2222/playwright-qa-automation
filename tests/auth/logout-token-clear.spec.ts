@@ -15,10 +15,10 @@ test('AUTH-003 로그아웃 후 인증 토큰 삭제 확인', async({page}) => {
     //2. 로그인 후 Session Storage의 키 목록 확인
     const before = await page.evaluate(() => ({
         accessTokenExists: Boolean(
-            sessionStorage.getItem('access_token')
+            sessionStorage.getItem('semo_access_token')
         ),
         refreshTokenExists: Boolean(
-            sessionStorage.getItem('refresh_token')
+            sessionStorage.getItem('semo_refresh_token')
         )
     }));
 
