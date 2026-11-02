@@ -1,31 +1,13 @@
 import {test, expect} from '@playwright/test';
 import {testConfig} from '../../config/testConfig';
+import {getAccessToken} from '../../utils/authHelper';
 
 test('API-002 로그인 후 사용자 정보 조회', async ({request}) => {
-    //1. 로그인 API 호출
-    const loginResponse = await request.post(
-        '로그인 API',
-        {
-            data:{
-                userId: testConfig.id,
-                password: testConfig.password,
-                rememberMe: false
-            }
-        }
-    );
-
-    expect(loginResponse.status()).toBe(201);
-
-    //2. 로그인 응답에서 Access Token 호출
-    const loginData = await loginResponse.json();
-
-    expect(loginData.data.accessToken).toBeTruthy();
-
-    const accessToken = loginData.data.accessToken;
+    const accessToken = await getAccessToken(request);
    
     //3. 사용자 정보 조회 API 호출
     const userResponse = await request.get(
-        'https://api-dev.semo.io.kr/auth/me',
+        '사용자 정보 조회 API',
         {
             headers:{
                 Authorization: `Bearer ${accessToken}`
