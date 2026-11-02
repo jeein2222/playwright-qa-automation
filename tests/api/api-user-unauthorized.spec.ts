@@ -20,7 +20,7 @@ test('API-003 토큰 없이 사용자 정보 조회 시 접근 차단', async ({
 
 test('API-004 잘못된 토큰으로 사용자 조회', async ({request})=> {
     const response = await request.get(
-        'https://api-dev.semo.io.kr/auth/me',
+        '사용자 정보 조회 API',
         {
             headers :{
                 Authorization: 'Bearer invalid-token' 
