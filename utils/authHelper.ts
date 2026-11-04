@@ -5,7 +5,7 @@ export async function getAccessToken(
     request: APIRequestContext
 ):Promise<string> {
     const response = await request.post(
-        'https://api-dev.semo.io.kr/auth/login',
+        testConfig.url,
         {
             data:{
                 userId: testConfig.id,

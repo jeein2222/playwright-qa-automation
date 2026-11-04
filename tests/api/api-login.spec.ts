@@ -11,7 +11,7 @@ test('API-001 정상 계정으로 로그인 API 호출', async( { request }) => 
 
     //Act: 로그인 API 호출
     const response = await request.post(
-         '로그인 API',
+         testConfig.url,
         {data:loginData}
     );
 
