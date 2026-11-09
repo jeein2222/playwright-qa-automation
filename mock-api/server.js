@@ -141,6 +141,27 @@ const server = http.createServer(async (req, res) => {
     }
   }
 
+  // 5. 프로젝트 삭제 API
+  if(req.method === 'DELETE' && /^\/projects\/\d+$/.test(req.url)){
+    const id = Number(req.url.split('/')[2]);
+
+    // 삭제할 프로젝트 존재 여부 확인
+    const project = projects.get(id);
+    
+    if(!project){
+      return send(404, {
+        message:'Project not found'
+      })
+    }
+
+    // 실제 데이터 삭제
+    projects.delete(id);
+
+    // 204 No Content : 응답 Body 없음
+    res.writeHead(204);
+    return res.end();
+  }
+
   // 존재하지 않는 API
   return send(404, {
       message: 'Not found'

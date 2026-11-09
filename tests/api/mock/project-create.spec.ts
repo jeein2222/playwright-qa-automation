@@ -1,6 +1,6 @@
-import { test, expect } from '@playwright/test';
+import {test, expect} from '@playwright/test';
 
-test('PROJECT-001 정상 프로젝트 생성', async ({request})=> {
+test('PROJECT-001 정상 프로젝트 생성', async ({request}) => {
     //1. 중복 방지를 위한 고유 프로젝트 이름
     const projectName = `TestProject-${Date.now()}`;
 
@@ -28,7 +28,7 @@ test('PROJECT-001 정상 프로젝트 생성', async ({request})=> {
     const projects = await listResponse.json();
 
     const matchedProjects = projects.filter(
-        (project: {id: number; name: string}) => 
+        (project : {id:number; name:string}) =>
             project.id === body.id && project.name === projectName
     );
 
